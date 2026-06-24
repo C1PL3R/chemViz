@@ -1,0 +1,353 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Rubik";
+    max-width: 100%;
+}
+
+.header-mobile {
+    display: none;
+}
+
+.header-desktop section .container-buttons::-webkit-scrollbar {
+    width: 4px;
+    height: 3px;
+}
+
+.header-desktop section .container-buttons::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.header-desktop section .container-buttons::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.header-desktop section .container-buttons::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scroll-bar-bg-color-hvr);
+}
+
+.header-desktop {
+    width: 100%;
+    height: auto;
+    background-color: var(--bg-color);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.header-desktop .wrapper {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--header-bg-color);
+    gap: 30px;
+    padding: 10px;
+    border-radius: 15px;
+    align-items: center;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.header-desktop .wrapper .container-buttons {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header-desktop .wrapper .logo-text {
+    width: auto;
+    text-align: center;
+    color: var(--text-color);
+    font-weight: 450;
+    font-size: 30px;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.header-mobile section .logo-text {
+    display: none;
+}
+
+.header-desktop section .container-buttons {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    white-space: nowrap;
+    display: flex;
+    gap: 10px;
+    max-width: calc(40px*3 + 10px*3 + 5px);
+    height: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.header-desktop section .container-buttons::-webkit-scrollbar {
+    display: none;
+}
+
+.header-desktop section .buttons {
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+    scroll-snap-align: start;
+    align-items: center;
+    gap: 10px;
+    height: auto;
+}
+
+.header-desktop section .buttons a,
+.special-buttons a {
+    width: 40px;
+    aspect-ratio: 1 / 1;
+    background-color: var(--header-button-bg-color);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out, scale 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg-color);
+}
+
+
+.header-desktop section .buttons a:hover,
+.special-buttons a:hover {
+    background-color: var(--header-button-bg-color-hvr);
+}
+
+.header-desktop section .buttons a:active,
+.special-buttons a:active {
+    scale: 0.8;
+}
+
+.header-desktop section .buttons button svg,
+.special-buttons button svg {
+    color: var(--bg-color);
+}
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--bg-color);
+    border-radius: 5px;
+    padding: 10px;
+    padding-left: 5px;
+    height: 40px;
+    width: 100%;
+}
+
+.search-container svg {
+    width: 25px;
+    height: 25px;
+    color: var(--text-color);
+}
+
+.search-container input {
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 25px;
+    background-color: transparent;
+    color: var(--text-color);
+    font-size: 16px;
+    font-family: "Rubik";
+}
+
+.special-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+#profileBtn{
+    border-radius: 50%;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+article {
+    flex: 1 1 auto;
+}
+
+footer {
+    width: 100%;
+    height: auto;
+}
+
+footer section {
+    height: 50px;
+    background-color: var(--header-bg-color);
+    color: var(--text-color);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0px;
+}
+
+input:-webkit-autofill {
+    background-color: transparent !important;
+    color: var(--text-color) !important;
+    font-family: "Rubik", sans-serif;
+    -webkit-text-fill-color: var(--text-color) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.text-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    color: var(--text-color);
+
+    a {
+        color: var(--text-color);
+        text-decoration: none;
+        transition: 0.5s;
+
+        &:hover {
+            scale: 1.1;
+        }
+    }
+
+    &::before,
+    &::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid var(--text-color);
+    }
+
+    &::before {
+        margin-right: 10px;
+    }
+
+    &::after {
+        margin-left: 10px;
+    }
+}
+
+
+.modal-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: background-color 0.3s ease, opacity 0.3s ease, visibility 0.3s;
+    z-index: 500;
+    overflow: hidden;
+}
+
+.modal-dialog-overlay.active {
+    visibility: visible;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-content {
+    background-color: var(--header-bg-color);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 8px;
+    transform: translateY(-100vh);
+    transition: transform 0.4s ease;
+    position: relative;
+    max-width: 80%;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-dialog-overlay.active .dialog-content {
+    transform: translateY(0);
+}
+
+.dialog-content .dialog-header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.close-btn {
+    background-color: transparent !important;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+    color: var(--header-button-bg-color-hvr);
+}
+
+.molecule-name,
+.what_are_smiles-header,
+.about-header,
+.converter-header,
+.visualizer-header,
+.settings-header,
+.cookie-policy-header,
+.privacy-policy-header,
+.terms-of-service-header,
+.disclaimer-header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--bg-color);
+    border-radius: 5px;
+    padding: 10px;
+    padding-left: 5px;
+    height: 40px;
+    width: 80%;
+
+    span {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        color: var(--text-color);
+    }
+}
+
+#linkMenu{
+    display: none;
+}
+
+#settings-mobile, #settings-desktop {
+    display: none;
+}
