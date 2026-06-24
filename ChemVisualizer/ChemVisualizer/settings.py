@@ -24,7 +24,7 @@ IS_PRODUCTION = os.environ.get('DJANGO_PRODUCTION', 'False') == 'True'
 
 if IS_PRODUCTION:
     DEBUG = False
-    ALLOWED_HOSTS = ['vitaliy.pythonanywhere.com']
+    ALLOWED_HOSTS = ['chemviz.pythonanywhere.com']
     
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
