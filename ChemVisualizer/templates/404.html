@@ -1,0 +1,11 @@
+{% extends "template.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | 404{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/desktop/errors.css' %}">
+{% endblock %}
+
+{% block content %}
+<span>Сторінка не знайдена!</span> 
+{% endblock %}

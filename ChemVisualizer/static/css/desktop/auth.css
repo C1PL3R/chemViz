@@ -1,0 +1,208 @@
+.login-register-container {
+    width: 100%;
+    height: 589px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+}
+
+.central-container {
+    width: 20%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent !important;
+    padding: 10px;
+    gap: 10px;
+
+    span {
+        font-size: 20px;
+        transition: all 0.3s ease;
+    }
+}
+
+.login-container,
+.signup-container {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--header-bg-color);
+    border-radius: 15px;
+    padding: 10px;
+    gap: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.login-container.not-active,
+.signup-container.not-active {
+    opacity: 0.25;
+}
+
+
+#switchToSignupBtn {
+    width: 120px;
+    aspect-ratio: 16/1;
+    background-color: var(--header-bg-color);
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    svg {
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+#switchToSignupBtn.icon-rotate {
+    svg {
+        transform: rotate(180deg);
+    }
+}
+
+#LoginWithGitHub {
+    width: 40px;
+    height: 40px;
+    aspect-ratio: 1/1;
+    background-color: var(--header-bg-color);
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#LoginWithGitHub svg {
+    color: white;
+}
+
+.signup-container h1,
+.login-container h1 {
+    font-size: 25px;
+    margin: 0;
+    color: var(--color-text);
+    text-align: center;
+    font-weight: 500;
+}
+
+*,
+*:focus {
+    outline: none
+}
+
+#loginForm, #signupForm {
+    width: 500px;
+    font-family: "Rubik", sans-serif;
+    background: transparent !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.form-item {
+    position: relative;
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+    gap: 10px;
+    height: 40px;
+    align-items: center;
+
+    svg{
+        margin: 10px;
+    }
+}
+
+.form-item input {
+    display: flex;
+    outline: none;
+    width: 400px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    transition: all .3s ease;
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.form-item input:-webkit-autofill {
+    background-color: transparent !important;
+    color: var(--text-color) !important;
+    font-family: "Rubik", sans-serif;
+    -webkit-text-fill-color: var(--text-color) !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+.form-item input:focus {
+    border-color: var(--header-button-bg-color);
+}
+
+.form-item label {
+    position: absolute;
+    cursor: text;
+    z-index: 2;
+    top: 10px;
+    left: 33px;
+    font-size: 16px;
+    font-family: "Rubik", sans-serif;
+    padding: 0 10px;
+    color: var(--text-color);
+    transition: all .3s ease;
+    opacity: 0.5;
+}
+
+.form-item input:focus+label,
+.form-item input:valid+label {
+    font-size: 14px;
+    top: -20px;
+    font-weight: 500;
+    background-color: transparent !important;
+    opacity: 1;
+}
+
+.form-item input:focus+label {
+    color: var(--header-button-bg-color);
+}
+
+.button-container button{
+    padding: 15px;
+    background-color: var(--header-button-bg-color);
+    outline: none;
+    border: none;
+    color: var(--bg-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-size: 17px;
+}
+
+.form-item-password-show{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-left: 35px;
+}

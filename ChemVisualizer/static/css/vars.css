@@ -1,0 +1,56 @@
+.standart-dark-theme{
+    --bg-color: #222831;
+    --text-color: #EEEEEE;
+
+    --header-bg-color: #393E46;
+    --header-button-bg-color: #00ADB5;
+
+    --receiver-msg-bg-color: #303640;
+
+    --text-secondary: #A19F9F;
+
+    /* ------------------- Hover ------------------- */
+    --header-button-bg-color-hvr: #1bd8e2;
+    --scroll-bar-bg-color-hvr: #8f8f8f;
+    --button-bg-color-hvr: #3d4551;
+}
+
+.standart-red-theme{
+    --bg-color: #212121;
+    --text-color: #F5EDED;
+
+    --header-bg-color: #3E3636;
+    --header-button-bg-color: #D72323;
+
+    --receiver-msg-bg-color: #000000;
+
+    --text-secondary: #cecece;
+
+    /* ------------------- Hover ------------------- */
+    --header-button-bg-color-hvr: #a31515;
+    --scroll-bar-bg-color-hvr: #8f8f8f;
+    --button-bg-color-hvr: #4c5564;
+}
+
+.standart-green-theme{
+    --bg-color: #1B211A;
+    --text-color: #EBD5AB;
+
+    --header-bg-color: #628141;
+    --header-button-bg-color: #b1e47b;
+
+    --receiver-msg-bg-color: #1B211A;
+
+    --text-secondary: #c8baa1;
+
+    /* ------------------- Hover ------------------- */
+    --header-button-bg-color-hvr: #739153;
+    --scroll-bar-bg-color-hvr: #8f8f8f;
+    --button-bg-color-hvr: #8fb863;
+}
+
+:root{
+    --doc-bg-color: #EEEEEE;
+    --doc-text-color: #222831; 
+}
+

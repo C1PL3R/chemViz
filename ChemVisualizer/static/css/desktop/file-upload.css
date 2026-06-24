@@ -1,0 +1,101 @@
+.file-upload-text {
+    display: flex;
+    padding: 10px;
+    background-color: var(--header-bg-color);
+    color: var(--text-color);
+    border-radius: 10px;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    margin: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.file-upload-text h1 {
+    font-size: 25px;
+}
+
+.file-upload-container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Приховати стандартний input type="file" */
+.file-input {
+    display: none;
+}
+
+.file-upload-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    width: 100%;
+    background-color: var(--bg-color);
+    border: dashed var(--header-button-bg-color);
+    border-width: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.file-upload-box:hover {
+    background-color: var(--button-bg-color-hvr);
+    /* Зміна фону при наведенні */
+}
+
+.file-upload-box svg {
+    width: 60px;
+    height: 60px;
+    color: var(--header-button-bg-color);
+    margin-bottom: 15px;
+}
+
+.file-upload-box .file-name {
+    font-size: 1.2em;
+    /* Розмір тексту назви файлу */
+    color: var(--text-color);
+    margin-bottom: 5px;
+    /* Відступ між назвою та розміром */
+}
+
+.file-upload-box .file-size {
+    font-size: 0.9em;
+    color: #999;
+    /* Сірий колір для розміру файлу */
+}
+
+form button[type="submit"] {
+    width: auto;
+    padding: 20px;
+    font-size: 20px;
+    background-color: var(--header-bg-color);
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, scale 0.2s ease;
+    margin-bottom: 20px;
+}
+
+form button[type="submit"]:hover {
+    background-color: var(--button-bg-color-hvr);
+}
+
+form button[type="submit"]:active {
+    scale: 0.95;
+}

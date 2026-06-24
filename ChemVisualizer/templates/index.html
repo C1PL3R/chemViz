@@ -1,0 +1,100 @@
+{% extends "template.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | Головна сторінка{% endblock %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/desktop/index.css' %}">
+<link rel="stylesheet" href="{% static 'css/mobile/index.css' %}">
+
+<meta name="description" content="Генерація 3D-моделей молекул за формулою або назвою речовини.">
+<meta name="author" content="C1PL3R">
+<meta name="keywords" content="хімія, молекули, 3D, 2D, генерація, SMILES, навчання, ChemVisualizer">
+{% endblock %}
+
+{% block content %}
+<span class="text-divider">Створення</span>
+
+<section id="loader_container">
+    <span id="nameLoader" class="loader" style="display: none;"></span>
+    <span id="formulaLoader" class="loader" style="display: none;"></span>
+    <span id="smilesLoader" class="loader" style="display: none;"></span>
+</section>
+
+<section class="create-mol-area">
+    <button id="MoleculeBtn">
+        <svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+            <path d="M10 14L7 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <path d="M10.5 10.5L6 6" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <circle cx="18" cy="19" r="1" stroke="currentColor" stroke-width="2" />
+            <path d="M14 14L18 19" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="2" />
+            <path d="M17 7L14 10" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+            <circle cx="5.5" cy="5.5" r="2.5" fill="currentColor" />
+            <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2" />
+        </svg>
+        <span>Молекули</span>
+    </button>
+
+    <button id="CrystalBtn" class="nav-btn">
+        <svg width="24px" height="24px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <rect width="48" height="48" fill="none" />
+            <path
+                d="M39,29.3V18.7A8,8,0,0,0,37,3a8,8,0,0,0-7.7,6H18.7A8,8,0,0,0,3,11a8,8,0,0,0,6,7.7V29.3A8,8,0,0,0,11,45a8,8,0,0,0,7.7-6H29.3A8,8,0,1,0,39,29.3ZM29.3,35H18.7A7.9,7.9,0,0,0,13,29.3V18.7A7.9,7.9,0,0,0,18.7,13H29.3A7.9,7.9,0,0,0,35,18.7V29.3A7.9,7.9,0,0,0,29.3,35Z"
+                fill="currentColor" />
+        </svg>
+
+        <span>Кристала</span>
+    </button>
+</section>
+
+<span class="text-divider">Раніше створені молекули</span>
+
+
+<section class="another-variants">
+    <section id="molecule-container">
+    </section>
+    <section class="load">
+        <button id="load-more" style="display: flex;">Завантажити ще</button>
+    </section>
+</section>
+
+
+<section class="modal-dialog-overlay" id="createMolecule">
+    <section class="dialog-content">
+        <section class="dialog-header">
+            <span>Створення молекули за назвою</span>
+            <button class="close-btn" id="closeMenuCreateMolecule">×</button>
+        </section>
+
+        <section class="search-form">
+            <input type="text" placeholder="Введіть назву молекули (англійською)" id="searchMoleculeInput">
+            <button id="searchMoleculeBtn">Пошук</button>
+        </section>
+
+        <a style="display: none;" class="moleculeLink" id="viewMolecule"
+            title="Натисніть, щоб переглянути молекулу!">Переглянути тут!</a>
+    </section>
+</section>
+
+<section class="modal-dialog-overlay" id="createCrystal">
+    <section class="dialog-content">
+        <!-- The content -->
+        <section class="dialog-header">
+            <span>Створення кристала за назвою</span>
+            <button class="close-btn" id="closeMenuCreateCrystal">×</button>
+        </section>
+
+        <section class="search-form">
+            <input type="text" placeholder="Введіть назву молекули (англійською)" id="searchCrystalInput">
+            <button id="searchCrystalBtn">Пошук</button>
+        </section>
+
+        <a style="display: none;" class="crystalLink" id="viewCrystal"
+            title="Натисніть, щоб переглянути молекулу!">Переглянути тут!</a>
+    </section>
+</section>
+
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

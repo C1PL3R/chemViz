@@ -1,0 +1,106 @@
+{% extends "template.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/desktop/view_molecule.css' %}">
+<link rel="stylesheet" href="{% static 'css/mobile/view_molecule.css' %}">
+
+<script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+
+<meta name="description" content="Перегляд молекули в 3D — {{ title }}">
+{% endblock %}
+
+{% block content %}
+<section class="viewer-container">
+    <section id="viewer">
+        <span id="titleOfViewer"
+            style="width: 100%; position: absolute; top: 10px; z-index: 1; color: black; font-size: 20px; display: flex; justify-content: center;"></span>
+        <section class="buttons">
+            <button id="openFullscreenBtn">
+                <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>
+                    <g id="fullscreen_fill" fill='none' fill-rule='evenodd'>
+                        <path
+                            d='M24 0v24H0V0zM12.593 23.258l-.011.002-.071.035-.02.004-.014-.004-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113-.013.002-.185.093-.01.01-.003.011.018.43.005.012.008.007.201.093c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.004-.011.017-.43-.003-.012-.01-.01z' />
+                        <path fill='currentColor'
+                            d='M18.5 5.5H16a1.5 1.5 0 0 1 0-3h3A2.5 2.5 0 0 1 21.5 5v3a1.5 1.5 0 0 1-3 0zM8 5.5H5.5V8a1.5 1.5 0 1 1-3 0V5A2.5 2.5 0 0 1 5 2.5h3a1.5 1.5 0 1 1 0 3m0 13H5.5V16a1.5 1.5 0 0 0-3 0v3A2.5 2.5 0 0 0 5 21.5h3a1.5 1.5 0 0 0 0-3m8 0h2.5V16a1.5 1.5 0 0 1 3 0v3a2.5 2.5 0 0 1-2.5 2.5h-3a1.5 1.5 0 0 1 0-3' />
+                    </g>
+                </svg>
+            </button>
+            <button style="z-index: 0;" id="downloadBtn">
+                <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>
+                    <g id="download_2_fill" fill='none'>
+                        <path
+                            d='M24 0v24H0V0zM12.593 23.258l-.011.002-.071.035-.02.004-.014-.004-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113-.013.002-.185.093-.01.01-.003.011.018.43.005.012.008.007.201.093c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.004-.011.017-.43-.003-.012-.01-.01z' />
+                        <path fill='currentColor'
+                            d='M20 14.5a1.5 1.5 0 0 1 1.5 1.5v4a2.5 2.5 0 0 1-2.5 2.5H5A2.5 2.5 0 0 1 2.5 20v-4a1.5 1.5 0 0 1 3 0v3.5h13V16a1.5 1.5 0 0 1 1.5-1.5m-8-13A1.5 1.5 0 0 1 13.5 3v9.036l1.682-1.682a1.5 1.5 0 0 1 2.121 2.12l-4.066 4.067a1.75 1.75 0 0 1-2.474 0l-4.066-4.066a1.5 1.5 0 0 1 2.121-2.121l1.682 1.682V3A1.5 1.5 0 0 1 12 1.5' />
+                    </g>
+                </svg>
+            </button>
+        </section>
+    </section>
+
+    <section class="controls">
+        <section class="animation-on">
+            <section id="animationCheckbox">
+                <svg style="display: none;" xmlns='http://www.w3.org/2000/svg' width='24' height='24'
+                    viewBox='0 0 24 24' id="animationCheckboxSvg">
+                    <g id="check_fill" fill='none' fill-rule='evenodd'>
+                        <path
+                            d='M24 0v24H0V0zM12.593 23.258l-.011.002-.071.035-.02.004-.014-.004-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113-.013.002-.185.093-.01.01-.003.011.018.43.005.012.008.007.201.093c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.004-.011.017-.43-.003-.012-.01-.01z' />
+                        <path fill='currentColor'
+                            d='M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0' />
+                    </g>
+                </svg>
+            </section>
+            <span id="animationStatus">Увімкнути анімацію</span>
+        </section>
+
+        <section class="show-text">
+            <section id="showTextCheckbox">
+                <svg style="display: none;" xmlns='http://www.w3.org/2000/svg' width='24' height='24'
+                    viewBox='0 0 24 24' id="showTextSvg">
+                    <g id="check_fill" fill='none' fill-rule='evenodd'>
+                        <path
+                            d='M24 0v24H0V0zM12.593 23.258l-.011.002-.071.035-.02.004-.014-.004-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01-.017.428.005.02.01.013.104.074.015.004.012-.004.104-.074.012-.016.004-.017-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113-.013.002-.185.093-.01.01-.003.011.018.43.005.012.008.007.201.093c.012.004.023 0 .029-.008l.004-.014-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014-.034.614c0 .012.007.02.017.024l.015-.002.201-.093.01-.008.004-.011.017-.43-.003-.012-.01-.01z' />
+                        <path fill='currentColor'
+                            d='M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0' />
+                    </g>
+                </svg>
+            </section>
+            <span id="ShowTextStatus">Показати підписи</span>
+        </section>
+    </section>
+</section>
+
+<!-- <span class="text-divider">Дані про молекулу {{ name }}</span>
+
+<div class="data_about_molecule">
+    {% if aids and sids %}
+    <span>IUPAC-назва: <b>{{ iupac_name }}</b></span>
+    <span>Молекулярна маса: <b>{{ molecular_weight }}</b></span>
+    <span>Молекулярна формула: <b>{{ molecular_formula|format_formula }}</b></span>
+    <span>Точна маса: <b>{{ exact_mass }}</b></span>
+    <span>Інші назви (синоніми): <b>{{ synonyms }}</b></span>
+    <span>AIDs: <b>{{ aids }}</b></span>
+    <span>SIDs: <b>{{ sids }}</b></span>
+    {% else %}
+    <span>IUPAC-назва: <b>{{ iupac_name }}</b></span>
+    <span>Молекулярна маса: <b>{{ molecular_weight }}</b></span>
+    <span>Молекулярна формула: <b>{{ molecular_formula|format_formula }}</b></span>
+    <span>Точна маса: <b>{{ exact_mass }}</b></span>
+    <span>Інші назви (синоніми): <b>{{ synonyms }}</b></span>
+    {% endif %}
+    <span class="add_info"><b>Дані взято з <a href="https://pubchem.ncbi.nlm.nih.gov/"
+                target="_blank">PubChem</a></b></span>
+</div>
+
+
+<span id="molecule" style='display: none;'>{{ mol_block }}</span> -->
+<span id="structureName" style='display: none;'></span> 
+
+<script type="module" src="{% static 'js/molecule_view.js' %}"></script>
+{% endblock %}

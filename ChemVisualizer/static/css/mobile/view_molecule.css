@@ -1,0 +1,22 @@
+@media (max-width: 600px) {
+    #viewer {
+        width: 100%;
+        height: 400px;
+        cursor: all-scroll;
+        position: relative;
+        border-radius: 15px;
+        padding: 15px;
+    }
+
+    .viewer-container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        padding: 30px;
+    }
+}

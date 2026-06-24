@@ -1,0 +1,55 @@
+.theme-options{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    padding: 20px;
+}
+
+#green-theme, #red-theme, #dark-theme, .legal-section a {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: medium;
+    font-family: "Rubik";
+}
+
+#green-theme:hover, #red-theme:hover, #dark-theme:hover, .legal-section a:hover {
+    transform: scale(1.05);
+    text-decoration: underline;
+}
+
+#green-theme {
+    background-color: #628141;
+    color: #EBD5AB;
+}
+
+#red-theme {
+    background-color: #3e3636;
+    color: #f5eded;
+}
+
+#dark-theme {
+    background-color: #393e46;
+    color: #f5eded;
+}
+
+.legal-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    padding: 20px;
+}
+
+.legal-section a {
+    background-color: var(--header-bg-color);
+    color: var(--text-color);
+    text-decoration: none;
+}

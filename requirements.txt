@@ -1,0 +1,6 @@
+Django==6.0.6
+djangorestframework==3.17.1
+pymatgen==2026.5.4
+pymatgen_core==2026.5.18
+pymysql==1.2.0
+Requests==2.34.2

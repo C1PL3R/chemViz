@@ -1,0 +1,50 @@
+.chat-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 15px;
+    padding-top: 0px;
+    gap: 15px;
+    height: 80vh;
+}
+
+.contacts-container,
+.messages-container {
+    background-color: var(--header-bg-color);
+    padding: 20px;
+    border-radius: 15px;
+    overflow-y: auto;
+    gap: 20px;
+    height: 100%;
+}
+
+.contacts-container {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-contact-container {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+
+    input {
+        width: 100%;
+        border: none;
+        outline: none;
+        color: var(--text-color);
+        background-color: transparent;
+        font-size: 16px;
+        font-family: "Rubik"
+    }
+}
+
+.messages-container {
+    width: 70%;
+}

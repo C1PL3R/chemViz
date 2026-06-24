@@ -1,0 +1,34 @@
+{% extends "template.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | Головна сторінка{% endblock %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/desktop/settings.css' %}">
+<link rel="stylesheet" href="{% static 'css/mobile/settings.css' %}">
+
+
+<meta name="description" content="Генерація 3D-моделей молекул за формулою або назвою речовини.">
+<meta name="author" content="C1PL3R">
+<meta name="keywords" content="хімія, молекули, 3D, 2D, генерація, SMILES, навчання, ChemVisualizer">
+{% endblock %}
+
+{% block content %}
+<span class="text-divider">Зміна теми</span>
+<section class="change-theme">
+    <section class="theme-options">
+        <button id="green-theme" class="theme-button">Зелена темна тема</button>
+        <button id="red-theme" class="theme-button">Червона темна тема</button>
+        <button id="dark-theme" class="theme-button">Стандартна темна тема</button>
+    </section>
+</section>
+
+<span class="text-divider">Політики</span>
+<section class="legal-section">
+    <a href="{% url 'privacy-policy' %}">Політика конфіденційності</a>
+    <a href="{% url 'disclaimer' %}">Відмова від відповідальності</a>
+    <a href="{% url 'cookie-policy' %}">Політика файлів cookie</a>
+    <a href="{% url 'terms-of-service' %}">Умови обслуговування</a>
+</section>
+
+{% endblock %}
