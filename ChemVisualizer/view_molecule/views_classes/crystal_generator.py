@@ -1,6 +1,6 @@
 import requests
-from pymatgen.core import Structure
-from pymatgen.io.xyz import XYZ
+from pymatgen.io.cif import CifParser
+from pymatgen.core.structure import IMolecule
 import pymysql
 
 
@@ -43,24 +43,29 @@ def get_crystal_id(crystal_name):
 
 def generation_of_crystal(crystal_id):
     cod_url = f"https://www.crystallography.net/cod/{crystal_id}.cif"
-    
+
     try:
         response = requests.get(cod_url, timeout=10)
         if response.status_code == 200:
-            structure = Structure.from_str(response.text, fmt="cif")
-            
+            parser = CifParser.from_str(response.text)
+            structures = parser.parse_structures(primitive=True)
+            structure = structures[0]
+
             for site in structure:
-                if isinstance(site.species, dict) or hasattr(site.species, 'items'):
+                if isinstance(site.species, dict) or hasattr(
+                    site.species, "items"
+                ):
                     most_probable_element = list(site.species.keys())[0]
                     site.species = most_probable_element
-            
+
             structure.make_supercell([5, 5, 5])
-            
-            xyz_obj = XYZ(structure)
-            expanded_xyz_text = str(xyz_obj)
-            
+            mol = IMolecule.from_sites(structure.sites)
+            expanded_xyz_text = mol.to(fmt="xyz")
+
             return expanded_xyz_text, None
         else:
             return None, f"Помилка завантаження. Код: {response.status_code}"
     except requests.RequestException:
         return None, "База даних недоступна."
+    except Exception as e:
+        return None, f"Помилка обробки CIF: {str(e)}"

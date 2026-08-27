@@ -30,21 +30,6 @@ class SendNameOfMolecule(View):
                         'fileFormat': 'sdf'
                     })
                     
-                    response.set_cookie(
-                        key='structure',
-                        value=str(name).capitalize(),
-                        max_age=7 * 24 * 60 * 60,
-                        httponly=False,
-                        samesite='Lax'
-                    )
-                    response.set_cookie(
-                        key='fileFormat',
-                        value="sdf",
-                        max_age=7 * 24 * 60 * 60,
-                        httponly=False,
-                        samesite='Lax'
-                    )
-                    
                     return response
                 else:
                     return JsonResponse({'status': 'fail', 'error': gen_error}, status=422)
@@ -81,22 +66,6 @@ class SendNameOfCrystal(View):
                     'name': name, 
                     'fileFormat': 'xyz'
                 })
-                    
-                response.set_cookie(
-                    key='structure',
-                    value=str(name).capitalize(),
-                    max_age=7 * 24 * 60 * 60,
-                    httponly=False,
-                    samesite='Lax'
-                )
-                response.set_cookie(
-                    key='fileFormat',
-                    value="xyz",
-                    max_age=7 * 24 * 60 * 60,
-                    httponly=False,
-                    samesite='Lax'
-                )
-                
                 return response
             else:
                 return JsonResponse({'status': 'fail', 'error': gen_error}, status=422)
