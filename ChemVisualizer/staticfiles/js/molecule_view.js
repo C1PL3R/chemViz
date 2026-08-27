@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let config = { backgroundColor: '#FFFFFF' };
     let viewer = $3Dmol.createViewer(element, config);
 
+    let structId = document.getElementById("structId");
+    structId.remove();
+
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {
@@ -17,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return cookieValue;
     }
-    async function findStructure(name) {
-        const url = `/api/structure/?name=${encodeURIComponent(name)}`;
+    async function findStructure(structId) {
+        const url = `/api/structure/?id=${structId}`;
 
         try {
             const response = await fetch(url);
@@ -31,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (data.length > 0) {
                 const foundMolecule = data[0];
+                console.log(foundMolecule);
                 return foundMolecule;
             } else {
                 console.log("Цієї молекули ще немає в історії бази даних.");
@@ -43,12 +47,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function initStructureRendering() {
-        let structureName = getCookie("structure");
-
-        if (structureName) {
-            let structure = await findStructure(structureName);
+        if (structId) {
+            let structure = await findStructure(structId.innerText);
             let titleOfViewer = document.getElementById("titleOfViewer");
-            titleOfViewer.innerText = "ChemViz | " + structureName;
+            titleOfViewer.innerText = `ChemViz | ${structure.name}`;
 
             if (structure) {
                 renderStructure(structure.coordinates, structure.format);

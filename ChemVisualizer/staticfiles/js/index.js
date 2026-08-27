@@ -205,9 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return `${day}.${month}.${year}`;
   }
 
-  function OpenModel(name) {
-    document.cookie = `structure=${name}; path=/`;
-    window.location.href = window.location.origin + "/visualizer/";
+  function OpenModel(name, id) {
+    window.location.href = `/visualizer/?id=${id}`;
   }
 
   function loadMolecules(initial = false) {
@@ -235,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const el = document.createElement("section");
           el.className = "element";
           el.id = `mol-${mol.id}`;
-          el.onclick = () => OpenModel(mol.name);
+          el.onclick = () => OpenModel(mol.name, mol.id);
 
           let iconSvg = "";
           if (mol.type === "molecule") {
