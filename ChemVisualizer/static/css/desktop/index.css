@@ -95,8 +95,9 @@
     transition: all 0.3s ease-in-out;
 
     svg {
-        scale: 1.1;
         color: var(--header-button-bg-color);
+        width: 30px;
+        height: 30px;
     }
 
     &:hover {
@@ -135,14 +136,20 @@
     background-color: var(--header-bg-color);
     color: var(--text-color);
     display: flex;
-    text-align: center;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: space-around;
     cursor: pointer;
     transition: all 0.4s ease;
     border-radius: 5px;
     text-overflow: ellipsis;
     white-space: nowrap;
     gap: 10px;
+}
+
+.element svg {
+    color: var(--header-button-bg-color);
+    width: 30px;
+    height: 30px;
 }
 
 
@@ -245,7 +252,8 @@
     scale: 1.05;
 }
 
-.dialog-content .moleculeLink, .dialog-content .crystalLink {
+.dialog-content .moleculeLink,
+.dialog-content .crystalLink {
     text-decoration: none;
     color: var(--text-color);
     width: 100%;
@@ -255,6 +263,7 @@
     transition: all 0.2s ease;
 }
 
-.dialog-content .moleculeLink:hover, .dialog-content .crystalLink:hover {
+.dialog-content .moleculeLink:hover,
+.dialog-content .crystalLink:hover {
     text-decoration: underline;
 }

@@ -21,23 +21,21 @@ def get_crystal_id(crystal_name):
             results = cursor.fetchall()
             
             if not results:
-                print(f"Кристал '{crystal_name}' не знайдено.")
-                return None
+                return None, f"Кристал '{crystal_name}' не знайдено."
             
             best_match = results[0] 
             
             cod_id = best_match[0]
-            formula = best_match[1]
-            mineral_name = best_match[2]
+            # formula = best_match[1]
+            # mineral_name = best_match[2]
             
-            print(f" Знайдено найкращий збіг:")
-            print(f"ID: {cod_id} | Формула: {formula} | Назва: {mineral_name}")
+            # print(f" Знайдено найкращий збіг:")
+            # print(f"ID: {cod_id} | Формула: {formula} | Назва: {mineral_name}")
             
-            return cod_id
+            return cod_id, None
                 
     except Exception as e:
-        print(f"Помилка підключення до MySQL: {e}")
-        return None
+        return None, f"Помилка підключення до MySQL: {e}"
     finally:
         if 'connection' in locals():
             connection.close()

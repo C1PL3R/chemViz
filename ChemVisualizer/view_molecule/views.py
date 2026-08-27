@@ -44,8 +44,8 @@ class StructureAPIView(viewsets.ReadOnlyModelViewSet):
     serializer_class = StructureSerializer
 
     def get_queryset(self):
-        name = self.request.query_params.get('name', None)
+        id = self.request.query_params.get('id', None)
         
-        if name is not None:
-            return Molecule.objects.filter(name__iexact=name)
+        if id is not None:
+            return Molecule.objects.filter(id=id)
         return Molecule.objects.all()

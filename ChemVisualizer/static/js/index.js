@@ -205,9 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return `${day}.${month}.${year}`;
   }
 
-  function OpenModel(name) {
-    document.cookie = `structure=${name}; path=/`;
-    window.location.href = window.location.origin + "/visualizer/";
+  function OpenModel(name, id) {
+    window.location.href = `/visualizer/?id=${id}`;
   }
 
   function loadMolecules(initial = false) {
@@ -235,15 +234,40 @@ document.addEventListener("DOMContentLoaded", () => {
           const el = document.createElement("section");
           el.className = "element";
           el.id = `mol-${mol.id}`;
-          el.onclick = () => OpenModel(mol.name);
+          el.onclick = () => OpenModel(mol.name, mol.id);
+
+          let iconSvg = "";
+          if (mol.type === "molecule") {
+            iconSvg = `
+						<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+              <path d="M10 14L7 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <path d="M10.5 10.5L6 6" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <circle cx="18" cy="19" r="1" stroke="currentColor" stroke-width="2" />
+              <path d="M14 14L18 19" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <circle cx="19" cy="5" r="2" stroke="currentColor" stroke-width="2" />
+              <path d="M17 7L14 10" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+              <circle cx="5.5" cy="5.5" r="2.5" fill="currentColor" />
+              <circle cx="5.5" cy="18.5" r="2.5" stroke="currentColor" stroke-width="2" />
+            </svg>`;
+          } else if (mol.type === "crystal") {
+            iconSvg = `<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <rect width="48" height="48" fill="none" />
+              <path
+                  d="M39,29.3V18.7A8,8,0,0,0,37,3a8,8,0,0,0-7.7,6H18.7A8,8,0,0,0,3,11a8,8,0,0,0,6,7.7V29.3A8,8,0,0,0,11,45a8,8,0,0,0,7.7-6H29.3A8,8,0,1,0,39,29.3ZM29.3,35H18.7A7.9,7.9,0,0,0,13,29.3V18.7A7.9,7.9,0,0,0,18.7,13H29.3A7.9,7.9,0,0,0,35,18.7V29.3A7.9,7.9,0,0,0,29.3,35Z"
+                  fill="currentColor" />
+            </svg>`;
+          }
 
           el.innerHTML = `
-						<span class="name">${mol.name}</span>
-						<span class="date">${formatDateToDMY(mol.created_at)}</span>
-					`;
+              ${iconSvg}
+              <span class="name">${mol.name}</span>
+              <span class="date">${formatDateToDMY(mol.created_at)}</span>
+          `;
 
           container.appendChild(el);
         });
+
 
         offset += limit;
 

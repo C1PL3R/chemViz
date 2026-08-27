@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from django.views import View
 from view_molecule.models import Molecule 
-from .molecule_generator import detect_substance_type, molecule_generator
+from .molecule_generator import detect, molecule_generator
 from .crystal_generator import generation_of_crystal, get_crystal_id
 from .molecule_view import createStructureRecord
 
@@ -17,7 +17,7 @@ class SendNameOfMolecule(View):
             if not name:
                 return JsonResponse({'status': 'fail', 'error': 'Назва молекули не вказана.'}, status=400)
 
-            substance_type, error_msg = detect_substance_type(name)
+            substance_type, error_msg = detect(name)
             
             if substance_type == "molecule":
                 mol_coordinates, gen_error = molecule_generator(name)
@@ -66,10 +66,10 @@ class SendNameOfCrystal(View):
             if not name:
                 return JsonResponse({'status': 'fail', 'error': 'Назва кристала не вказана.'}, status=400)
 
-            crystal_id = get_crystal_id(name)
+            crystal_id, error = get_crystal_id(name)
             
             if not crystal_id:
-                return JsonResponse({'status': 'fail', 'error': f"Кристал '{name}' не знайдено в базі даних."}, status=400)
+                return JsonResponse({'status': 'fail', 'error': error}, status=404)
 
             mol_coordinates, gen_error = generation_of_crystal(crystal_id)
 

@@ -5,8 +5,11 @@ from view_molecule.models import Molecule
 
 class MoleculeView(View):
     def get(self, request):
+        struct_id = request.GET.get('id')
+        print(struct_id)
         context = {
             "title": "ChemViz",
+            "struct_id": struct_id,
         }
 
         response = render(request, "ChemVisualizer/molecule_view.html", context)
